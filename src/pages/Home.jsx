@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
@@ -9,6 +10,7 @@ import Industries from "../components/Industries";
 import Testimonials from "../components/Testimonials";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
+import { handleAnchorScroll } from "../utils/scrollToSection";
 
 import { products } from "../data/products";
 
@@ -17,11 +19,12 @@ export default function Home() {
   const location = useLocation();
 
   useEffect(() => {
+    // Handle anchor scrolling when hash changes
     if (location.hash) {
-      const element = document.querySelector(location.hash);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
+      handleAnchorScroll(location.hash);
+    } else if (location.pathname === "/") {
+      // Scroll to top when landing on home page
+      window.scrollTo(0, 0);
     }
   }, [location]);
 
@@ -52,12 +55,12 @@ export default function Home() {
           <ProductGrid products={products.slice(0,6)} />
 
           <div className="text-center mt-12">
-            <a
-              href="/products"
+            <Link
+              to="/products"
               className="inline-block bg-blue-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-700 transition"
             >
               Explore More Products
-            </a>
+            </Link>
           </div>
 
         </div>

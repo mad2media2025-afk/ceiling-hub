@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import logo from "../assets/logo.png";
+import { scrollToSection } from "../utils/scrollToSection";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleHomeClick = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -13,6 +15,15 @@ export default function Navbar() {
 
   const closeMenu = () => {
     setIsOpen(false);
+  };
+
+  const handleAnchorNavigation = (sectionId) => {
+    // Navigate to home page first, then scroll to section
+    navigate("/");
+    setTimeout(() => {
+      scrollToSection(sectionId);
+    }, 100);
+    closeMenu();
   };
 
   return (
@@ -45,26 +56,26 @@ export default function Navbar() {
               Home
             </Link>
 
-            <a
-              href="/#products"
-              className="hover:text-blue-600 transition"
+            <button
+              onClick={() => handleAnchorNavigation("products")}
+              className="hover:text-blue-600 transition cursor-pointer bg-none border-none p-0"
             >
               Products
-            </a>
+            </button>
 
-            <a
-              href="/#why-us"
-              className="hover:text-blue-600 transition"
+            <button
+              onClick={() => handleAnchorNavigation("why-us")}
+              className="hover:text-blue-600 transition cursor-pointer bg-none border-none p-0"
             >
               Why Us
-            </a>
+            </button>
 
-            <a
-              href="/#testimonials"
-              className="hover:text-blue-600 transition"
+            <button
+              onClick={() => handleAnchorNavigation("testimonials")}
+              className="hover:text-blue-600 transition cursor-pointer bg-none border-none p-0"
             >
               Testimonials
-            </a>
+            </button>
 
             {/* FIXED SUPPORT */}
             <Link
@@ -77,12 +88,12 @@ export default function Navbar() {
           </div>
 
           {/* Get Quote Button */}
-          <a
-            href="/#contact"
-            className="hidden md:block bg-blue-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition"
+          <button
+            onClick={() => handleAnchorNavigation("contact")}
+            className="hidden md:block bg-blue-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition cursor-pointer border-none"
           >
             Get Quote
-          </a>
+          </button>
 
           {/* Mobile Menu Button */}
           <button
@@ -102,30 +113,38 @@ export default function Navbar() {
               Home
             </Link>
 
-            <a href="/#products" onClick={closeMenu}>
+            <button
+              onClick={() => handleAnchorNavigation("products")}
+              className="hover:text-blue-600 transition cursor-pointer bg-none border-none p-0 text-left"
+            >
               Products
-            </a>
+            </button>
 
-            <a href="/#why-us" onClick={closeMenu}>
+            <button
+              onClick={() => handleAnchorNavigation("why-us")}
+              className="hover:text-blue-600 transition cursor-pointer bg-none border-none p-0 text-left"
+            >
               Why Us
-            </a>
+            </button>
 
-            <a href="/#testimonials" onClick={closeMenu}>
+            <button
+              onClick={() => handleAnchorNavigation("testimonials")}
+              className="hover:text-blue-600 transition cursor-pointer bg-none border-none p-0 text-left"
+            >
               Testimonials
-            </a>
+            </button>
 
             {/* FIXED SUPPORT */}
             <Link to="/support" onClick={closeMenu}>
               Support
             </Link>
 
-            <a
-              href="/#contact"
-              onClick={closeMenu}
-              className="bg-blue-600 text-white py-3 rounded-md text-center"
+            <button
+              onClick={() => handleAnchorNavigation("contact")}
+              className="bg-blue-600 text-white py-3 rounded-md text-center cursor-pointer border-none"
             >
               Get Quote
-            </a>
+            </button>
 
           </div>
         )}

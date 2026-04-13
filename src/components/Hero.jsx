@@ -1,8 +1,30 @@
 import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
+import { scrollToSection } from "../utils/scrollToSection";
 
 export default function Hero() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleViewProducts = () => {
+    navigate("/products");
+  };
+
+  const handleGetQuote = () => {
+    // If already on home page, scroll directly
+    if (location.pathname === "/") {
+      scrollToSection("contact");
+    } else {
+      // Otherwise navigate to home and then scroll
+      navigate("/");
+      setTimeout(() => {
+        scrollToSection("contact");
+      }, 100);
+    }
+  };
+
   return (
     <section
       className="relative min-h-screen flex items-center justify-center text-white pt-24"
@@ -43,11 +65,17 @@ export default function Hero() {
           transition={{ delay: 0.5 }}
           className="flex flex-col sm:flex-row gap-4 justify-center mt-10"
         >
-          <button className="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-lg font-semibold flex items-center justify-center gap-2 transition">
+          <button
+            onClick={handleViewProducts}
+            className="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-lg font-semibold flex items-center justify-center gap-2 transition"
+          >
             View Products <FaArrowRight />
           </button>
 
-          <button className="border border-white px-8 py-4 rounded-lg hover:bg-white hover:text-black transition">
+          <button
+            onClick={handleGetQuote}
+            className="border border-white px-8 py-4 rounded-lg hover:bg-white hover:text-black transition"
+          >
             Get Quote
           </button>
         </motion.div>

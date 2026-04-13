@@ -4,6 +4,7 @@ import { products } from "../data/products";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useEffect } from "react";
+import { CONTACT } from "../config/contact";
 
 export default function ProductPage() {
 
@@ -21,12 +22,8 @@ export default function ProductPage() {
   // Active image state (for gallery)
   const [activeImage, setActiveImage] = useState(product.images[0]);
 
-  const whatsappNumber = "7678654408";
-
-  const message = `Hello, I am interested in ${product.name}. Please share more details.`;
-
-  const whatsappLink =
-    `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+  // Generate WhatsApp quote link with product name
+  const whatsappLink = CONTACT.productQuoteLink(product.name);
 
   return (
     <>

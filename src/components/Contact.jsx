@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaWhatsapp } from "react-icons/fa";
+import { CONTACT } from "../config/contact";
 
 export default function Contact() {
 
@@ -44,9 +45,17 @@ export default function Contact() {
           </p>
 
           <div className="space-y-4 text-gray-700">
-            <p>📍 Gurugram, Haryana</p>
-            <p>📞 +91 96786 54408</p>
-            <p>✉️ ceilinghubpvtltd@gmail.com</p>
+            <p>📍 {CONTACT.location}</p>
+            <p>📞 {CONTACT.phoneDisplay}</p>
+            <p>
+              ✉️{" "}
+              <a
+                href={`mailto:${CONTACT.email}`}
+                className="text-blue-600 hover:underline"
+              >
+                {CONTACT.email}
+              </a>
+            </p>
           </div>
 
         </div>
@@ -110,7 +119,7 @@ export default function Contact() {
 
       {/* WhatsApp Button */}
       <a
-        href="https://wa.me/917678654408"
+        href={CONTACT.whatsapp}
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-xl hover:bg-green-600 transition"

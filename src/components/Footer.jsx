@@ -1,5 +1,6 @@
 import React from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { CONTACT } from "../config/contact";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -60,17 +61,27 @@ export default function Footer() {
 
             <div className="flex items-center gap-2">
               <FaMapMarkerAlt className="text-blue-400"/>
-              <span>Gurugram, Haryana</span>
+              <span>{CONTACT.location}</span>
             </div>
 
             <div className="flex items-center gap-2">
               <FaPhone className="text-blue-400"/>
-              <span>+91 96786 54408</span>
+              <a
+                href={`tel:${CONTACT.phone}`}
+                className="hover:text-white transition"
+              >
+                {CONTACT.phoneDisplay}
+              </a>
             </div>
 
             <div className="flex items-center gap-2">
               <FaEnvelope className="text-blue-400"/>
-              <span>ceilinghubpvtltd@gmail.com</span>
+              <a
+                href={`mailto:${CONTACT.email}`}
+                className="hover:text-white transition"
+              >
+                {CONTACT.email}
+              </a>
             </div>
 
           </div>

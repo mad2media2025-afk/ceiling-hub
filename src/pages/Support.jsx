@@ -2,6 +2,7 @@ import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { FaWhatsapp, FaPhone, FaEnvelope, FaTools } from "react-icons/fa";
+import { CONTACT } from "../config/contact";
 
 export default function Support() {
 
@@ -59,7 +60,12 @@ export default function Support() {
                             <p className="text-gray-600 mb-3">
                                 Speak directly with our support team.
                             </p>
-                            <p className="font-semibold">+91 96786 54408</p>
+                            <a
+                                href={`tel:${CONTACT.phone}`}
+                                className="font-semibold text-blue-600 hover:underline"
+                            >
+                                {CONTACT.phoneDisplay}
+                            </a>
                         </div>
 
                         <div className="bg-white p-8 rounded-xl shadow hover:shadow-lg transition">
@@ -69,10 +75,10 @@ export default function Support() {
                                 Send detailed queries or complaints.
                             </p>
                             <a
-                                href="mailto:ceilinghubpvtltd@gmail.com"
+                                href={`mailto:${CONTACT.email}`}
                                 className="font-semibold text-blue-600 hover:underline"
                             >
-                                ceilinghubpvtltd@gmail.com
+                                {CONTACT.email}
                             </a>
                         </div>
 
@@ -179,7 +185,7 @@ export default function Support() {
 
             {/* WhatsApp Floating Button */}
             <a
-                href="https://wa.me/919678654408"
+                href="https://wa.me/917678654408"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-xl hover:bg-green-600 transition"
