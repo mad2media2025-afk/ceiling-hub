@@ -110,7 +110,7 @@ export default function Contact() {
 
       {/* WhatsApp Button */}
       <a
-        href="https://wa.me/9179678654408"
+        href="https://wa.me/917678654408"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-xl hover:bg-green-600 transition"
