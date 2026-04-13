@@ -6,19 +6,19 @@ export default function Testimonials() {
   const testimonials = [
     {
       name: "Rajesh Kumar",
-      company: "ABC Hospital",
+      company: "JNU Hospital",
       text: "Excellent quality materials and reliable delivery. Highly recommended supplier.",
       rating: 5,
     },
     {
       name: "Priya Sharma",
-      company: "XYZ Retail Ltd",
+      company: "Fortis Healthcare",
       text: "Great pricing and professional support. Helped us choose the right materials.",
       rating: 5,
     },
     {
       name: "Amit Patel",
-      company: "Tech Solutions Pvt Ltd",
+      company: "Sterlite Technologies",
       text: "Very dependable supplier with timely delivery and quality products.",
       rating: 5,
     },
