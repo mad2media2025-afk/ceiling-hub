@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
@@ -16,7 +16,6 @@ export default function Home() {
 
   const location = useLocation();
 
-  // Smooth scroll when navigating with anchors like /#products
   useEffect(() => {
     if (location.hash) {
       const element = document.querySelector(location.hash);
@@ -33,21 +32,33 @@ export default function Home() {
 
       <Hero />
 
-      {/* Products Section */}
-      <section id="products">
+      {/* PRODUCTS SECTION */}
+      <section id="products" className="py-20 bg-gray-50">
 
-        {/* Show only 6 products on homepage */}
-        <ProductGrid products={products.slice(0, 6)} />
+        <div className="max-w-7xl mx-auto px-6">
 
-        {/* Explore More Button */}
-        <div className="text-center mt-14 mb-10">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900">
+              Our Products
+            </h2>
 
-          <Link
-            to="/products"
-            className="inline-block bg-blue-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-700 transition"
-          >
-            Explore More Products
-          </Link>
+            <p className="text-gray-600 mt-4">
+              High-performance ceiling and insulation materials for residential,
+              commercial and industrial spaces.
+            </p>
+          </div>
+
+          {/* Show only first 6 products */}
+          <ProductGrid products={products.slice(0,6)} />
+
+          <div className="text-center mt-12">
+            <a
+              href="/products"
+              className="inline-block bg-blue-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-700 transition"
+            >
+              Explore More Products
+            </a>
+          </div>
 
         </div>
 
