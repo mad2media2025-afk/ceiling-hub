@@ -13,10 +13,8 @@ export default function Products() {
 
           <div className="text-center mb-16">
             <h1 className="text-4xl font-bold text-gray-900">
-              Our Products
             </h1>
             <p className="text-gray-600 mt-4">
-              Explore our full range of ceiling and insulation materials.
             </p>
           </div>
 
