@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
@@ -19,11 +18,9 @@ export default function Home() {
   const location = useLocation();
 
   useEffect(() => {
-    // Handle anchor scrolling when hash changes
     if (location.hash) {
       handleAnchorScroll(location.hash);
     } else if (location.pathname === "/") {
-      // Scroll to top when landing on home page
       window.scrollTo(0, 0);
     }
   }, [location]);
@@ -51,7 +48,6 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Show only first 6 products */}
           <ProductGrid products={products.slice(0,6)} />
 
           <div className="text-center mt-12">
@@ -68,13 +64,9 @@ export default function Home() {
       </section>
 
       <WhyChooseUs />
-
       <Industries />
-
       <Testimonials />
-
       <Contact />
-
       <Footer />
 
     </div>
