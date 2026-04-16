@@ -2,8 +2,16 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ProductGrid from "../components/ProductGrid";
 import { products } from "../data/products";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function Products() {
+  // SEO Meta Tags
+  usePageMeta(
+    "Products",
+    "Browse our complete range of ceiling boards, insulation materials, and construction solutions for all your project needs.",
+    "https://ceilinghub.in/products"
+  );
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />

@@ -12,10 +12,18 @@ import Footer from "../components/Footer";
 import { handleAnchorScroll } from "../utils/scrollToSection";
 
 import { products } from "../data/products";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function Home() {
 
   const location = useLocation();
+
+  // SEO Meta Tags
+  usePageMeta(
+    "Home",
+    "Welcome to CeilingHub - Premium ceiling and insulation materials for residential, commercial, and industrial spaces.",
+    "https://ceilinghub.in/"
+  );
 
   useEffect(() => {
     if (location.hash) {

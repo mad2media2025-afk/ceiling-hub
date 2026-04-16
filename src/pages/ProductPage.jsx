@@ -1,28 +1,38 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 import { products } from "../data/products";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { useEffect } from "react";
+
 import { CONTACT } from "../config/contact";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function ProductPage() {
 
   const { id } = useParams();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const product = products.find((p) => p.id === Number(id));
+
+  // SEO Meta Tags
+  if (product) {
+    usePageMeta(
+      product.name,
+      `${product.description} - Features: ${product.features.join(", ")}`,
+      `https://ceilinghub.in/product/${id}`
+    );
+  }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   if (!product) {
     return <div className="p-20 text-center">Product not found</div>;
   }
 
-  // Active image state (for gallery)
   const [activeImage, setActiveImage] = useState(product.images[0]);
 
-  // Generate WhatsApp quote link with product name
   const whatsappLink = CONTACT.productQuoteLink(product.name);
 
   return (
@@ -33,10 +43,9 @@ export default function ProductPage() {
 
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
 
-          {/* Product Image Gallery */}
+          {/* Image Gallery */}
           <div>
 
-            {/* Main Image */}
             <div className="overflow-hidden rounded-xl shadow-lg mb-4">
               <img
                 src={activeImage}
@@ -45,27 +54,22 @@ export default function ProductPage() {
               />
             </div>
 
-            {/* Thumbnail Images */}
             <div className="flex gap-4">
-
               {product.images.map((img, index) => (
-
                 <img
                   key={index}
                   src={img}
-                  alt="product thumbnail"
+                  alt="thumbnail"
                   onClick={() => setActiveImage(img)}
-                  className={`w-24 h-24 object-cover rounded-lg cursor-pointer border transition 
+                  className={`w-24 h-24 object-cover rounded-lg cursor-pointer border 
                   ${activeImage === img ? "border-blue-600" : "border-gray-300"}`}
                 />
-
               ))}
-
             </div>
 
           </div>
 
-          {/* Product Details */}
+          {/* Details */}
           <div>
 
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
@@ -82,20 +86,17 @@ export default function ProductPage() {
 
             <ul className="space-y-2 mb-8">
               {product.features.map((feature, i) => (
-                <li key={i} className="text-gray-700">
-                  • {feature}
-                </li>
+                <li key={i}>• {feature}</li>
               ))}
             </ul>
 
-            {/* Applications */}
             {product.applications && (
               <>
                 <h3 className="font-semibold mb-3 text-lg mt-8">
                   Applications
                 </h3>
 
-                <ul className="grid grid-cols-2 gap-2 mb-8 text-gray-700">
+                <ul className="grid grid-cols-2 gap-2 mb-8">
                   {product.applications.map((app, i) => (
                     <li key={i}>• {app}</li>
                   ))}
@@ -103,7 +104,6 @@ export default function ProductPage() {
               </>
             )}
 
-            {/* Specifications */}
             {product.specifications && (
               <div className="mb-10">
                 <h3 className="font-semibold mb-4 text-lg">
@@ -112,31 +112,23 @@ export default function ProductPage() {
 
                 <div className="overflow-hidden rounded-lg border">
                   <table className="w-full text-sm">
-
                     <tbody>
-
                       {Object.entries(product.specifications).map(([key, value]) => (
                         <tr key={key} className="border-b">
-
                           <td className="bg-gray-50 px-4 py-3 font-medium">
                             {key}
                           </td>
-
                           <td className="px-4 py-3">
                             {value}
                           </td>
-
                         </tr>
                       ))}
-
                     </tbody>
-
                   </table>
                 </div>
               </div>
             )}
 
-            {/* WhatsApp Quote Button */}
             <a
               href={whatsappLink}
               target="_blank"

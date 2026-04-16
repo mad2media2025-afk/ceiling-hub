@@ -2,9 +2,18 @@ import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { FaWhatsapp, FaPhone, FaEnvelope, FaTools } from "react-icons/fa";
+
 import { CONTACT } from "../config/contact";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function Support() {
+
+    // SEO Meta
+    usePageMeta(
+        "Support",
+        "Get help and support from CeilingHub. Contact us for product information, installation guidance, and bulk orders.",
+        "https://ceilinghub.in/support"
+    );
 
     const [openFAQ, setOpenFAQ] = useState(null);
 
@@ -39,7 +48,7 @@ export default function Support() {
 
                 <div className="max-w-6xl mx-auto">
 
-                    {/* Page Title */}
+                    {/* Title */}
                     <div className="text-center mb-16">
                         <h1 className="text-4xl font-bold text-gray-900 mb-4">
                             Customer Support
@@ -51,7 +60,7 @@ export default function Support() {
                         </p>
                     </div>
 
-                    {/* Support Options */}
+                    {/* Support Cards */}
                     <div className="grid md:grid-cols-3 gap-8 mb-20">
 
                         <div className="bg-white p-8 rounded-xl shadow hover:shadow-lg transition">
@@ -92,7 +101,7 @@ export default function Support() {
 
                     </div>
 
-                    {/* Support Form */}
+                    {/* Form */}
                     <div className="bg-white rounded-xl shadow p-10 mb-20">
 
                         <h2 className="text-2xl font-semibold mb-6">
@@ -101,23 +110,9 @@ export default function Support() {
 
                         <form className="grid md:grid-cols-2 gap-6">
 
-                            <input
-                                type="text"
-                                placeholder="Your Name"
-                                className="p-3 border rounded-md"
-                            />
-
-                            <input
-                                type="email"
-                                placeholder="Email Address"
-                                className="p-3 border rounded-md"
-                            />
-
-                            <input
-                                type="text"
-                                placeholder="Phone Number"
-                                className="p-3 border rounded-md"
-                            />
+                            <input type="text" placeholder="Your Name" className="p-3 border rounded-md" />
+                            <input type="email" placeholder="Email Address" className="p-3 border rounded-md" />
+                            <input type="text" placeholder="Phone Number" className="p-3 border rounded-md" />
 
                             <select className="p-3 border rounded-md">
                                 <option>Support Category</option>
@@ -133,9 +128,7 @@ export default function Support() {
                                 className="p-3 border rounded-md md:col-span-2"
                             />
 
-                            <button
-                                className="bg-blue-600 text-white py-3 rounded-md font-semibold hover:bg-blue-700 transition md:col-span-2"
-                            >
+                            <button className="bg-blue-600 text-white py-3 rounded-md font-semibold hover:bg-blue-700 transition md:col-span-2">
                                 Submit Support Request
                             </button>
 
@@ -143,7 +136,7 @@ export default function Support() {
 
                     </div>
 
-                    {/* FAQ Section */}
+                    {/* FAQ */}
                     <div className="mb-16">
 
                         <h2 className="text-3xl font-bold mb-8 text-center">
@@ -153,7 +146,6 @@ export default function Support() {
                         <div className="space-y-4">
 
                             {faqs.map((faq, index) => (
-
                                 <div
                                     key={index}
                                     className="bg-white rounded-lg shadow p-5 cursor-pointer"
@@ -172,7 +164,6 @@ export default function Support() {
                                     )}
 
                                 </div>
-
                             ))}
 
                         </div>
@@ -183,7 +174,7 @@ export default function Support() {
 
             </section>
 
-            {/* WhatsApp Floating Button */}
+            {/* WhatsApp Button */}
             <a
                 href="https://wa.me/917678654408"
                 target="_blank"
