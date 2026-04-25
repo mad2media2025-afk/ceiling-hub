@@ -46,7 +46,20 @@ export default function Contact() {
 
           <div className="space-y-4 text-gray-700">
             <p>📍 {CONTACT.location}</p>
-            <p>📞 {CONTACT.phoneDisplay}</p>
+            <div>
+              <p className="font-semibold mb-2">📞 Contact Numbers:</p>
+              <div className="space-y-2 pl-6">
+                {CONTACT.phones.map((phone, index) => (
+                  <a
+                    key={index}
+                    href={`tel:${phone.number}`}
+                    className="block text-blue-600 hover:underline transition"
+                  >
+                    {phone.display}
+                  </a>
+                ))}
+              </div>
+            </div>
             <p>
               ✉️{" "}
               <a
