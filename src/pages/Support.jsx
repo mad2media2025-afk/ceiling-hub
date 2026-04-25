@@ -66,15 +66,20 @@ export default function Support() {
                         <div className="bg-white p-8 rounded-xl shadow hover:shadow-lg transition">
                             <FaPhone className="text-3xl text-blue-600 mb-4" />
                             <h3 className="font-semibold text-xl mb-2">Call Support</h3>
-                            <p className="text-gray-600 mb-3">
+                            <p className="text-gray-600 mb-4">
                                 Speak directly with our support team.
                             </p>
-                            <a
-                                href={`tel:${CONTACT.phone}`}
-                                className="font-semibold text-blue-600 hover:underline"
-                            >
-                                {CONTACT.phoneDisplay}
-                            </a>
+                            <div className="space-y-2">
+                                {CONTACT.phones.map((phone, index) => (
+                                    <a
+                                        key={index}
+                                        href={`tel:${phone.number}`}
+                                        className="block font-semibold text-blue-600 hover:underline transition text-sm"
+                                    >
+                                        {phone.display}
+                                    </a>
+                                ))}
+                            </div>
                         </div>
 
                         <div className="bg-white p-8 rounded-xl shadow hover:shadow-lg transition">
@@ -176,7 +181,7 @@ export default function Support() {
 
             {/* WhatsApp Button */}
             <a
-                href="https://wa.me/917678654408"
+                href={CONTACT.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-xl hover:bg-green-600 transition"
