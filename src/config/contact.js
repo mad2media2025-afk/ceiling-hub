@@ -5,11 +5,18 @@
  */
 
 export const CONTACT = {
-  // Phone number (without +91 prefix for WhatsApp links)
+  // Primary phone numbers
+  phones: [
+    { number: "917678654408", display: "+91 76786 54408" },
+    { number: "919625109477", display: "+91 96251 09477" },
+    { number: "917065657604", display: "+91 70656 57604" }
+  ],
+
+  // Primary phone number (for backward compatibility)
   phone: "917678654408",
 
-  // Phone number formatted for display
-  phoneDisplay: "+91 7678 654408",
+  // Phone number formatted for display (for backward compatibility)
+  phoneDisplay: "+91 76786 54408",
 
   // Email address
   email: "ceilinghubpvtltd@gmail.com",
